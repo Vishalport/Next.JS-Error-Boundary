@@ -17,7 +17,7 @@ export default class ErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <div>
-          <h2>Oops, There is an Error!</h2>1
+          <h2>Oops, There is an Error!</h2>
           <p>{this.state.error.message}</p>
         </div>
       );
