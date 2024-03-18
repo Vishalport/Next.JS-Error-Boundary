@@ -13,28 +13,60 @@ pnpm dev
 # or
 bun dev
 ```
+### Prerequisites:
+1. Node.js installed on your machine
+2. npm or yarn package manager installed
+3. Basic understanding of Next.js and Node.js
+4. Mobile development environment set up (Android Studio for Android or Xcode for iOS)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Add Platforms**:
+   Decide which platforms you want to target (iOS, Android, or both) and add them to your project. For example, to add Android:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+   ```bash
+   npx cap add android
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+   Similarly, for iOS:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   ```bash
+   npx cap add ios
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **Export your Next.js project**:
+   Next.js projects compile down to static HTML, CSS, and JavaScript files. You'll need to build your Next.js project and then copy the output to Capacitor's www directory:
 
-## Learn More
+   ```bash
+   npm run build
+   cp -r .next/static .next/server .next/main.js public/
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. **Sync the Capacitor Project**:
+   Sync the Capacitor project with the latest changes from the Next.js project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npx cap copy
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+6. **Open the Native IDE**:
+   Open the native IDE (Android Studio for Android, Xcode for iOS) to work on your native project:
 
-## Deploy on Vercel
+   ```bash
+   npx cap open android
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   or
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npx cap open ios
+   ```
+
+7. **Build and Run**:
+   Inside Android Studio or Xcode, build and run your app on a simulator or a physical device.
+
+8. **Continuously Update Capacitor**:
+   Whenever you make changes to your Next.js project, rebuild it and then sync the changes with Capacitor:
+
+   ```bash
+   npm run build
+   cp -r .next/static .next/server .next/main.js public/
+   npx cap copy
